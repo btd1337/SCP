@@ -2,11 +2,8 @@
 Sistema de Controle de Pizzaria
 
 Desenvolvido por: Helder Bertoldo
-
 Universidade Federal de Juiz de Fora
-
 Disciplina: Laboratório de Programação 3
-
 TRB1 ­ Programação OO e Interface com Usuário
 
  

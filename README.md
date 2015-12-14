@@ -1,10 +1,10 @@
 # SCP
 Sistema de Controle de Pizzaria
 
-Desenvolvido por: Helder Bertoldo
-Universidade Federal de Juiz de Fora
-Disciplina: Laboratório de Programação 3
-TRB1 ­ Programação OO e Interface com Usuário
+1. Desenvolvido por: Helder Bertoldo
+2. Universidade Federal de Juiz de Fora
+3. Disciplina: Laboratório de Programação 3
+4. TRB1 ­ Programação OO e Interface com Usuário
 
  
 Protótipo para  controle de pedidos de uma pizzaria durante um dia de trabalho. 

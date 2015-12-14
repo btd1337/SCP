@@ -1,8 +1,15 @@
 
+import java.awt.ComponentOrientation;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,7 +29,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private DefaultListModel<Mesa> modeloMesa;
     private DefaultListModel<Pedido> modeloPedido;
     private DefaultListModel<Produto> modeloProduto;
-    private TelaAdicionarProduto recebeProduto;
     
     
     
@@ -32,7 +38,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         mesas = new ArrayList();
         pedidos = new ArrayList();
         produtos = new ArrayList();
-        recebeProduto = new TelaAdicionarProduto();
         
     }
 
@@ -58,6 +63,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         lstDescricaoMesa = new javax.swing.JList();
         tglStatusMesa = new javax.swing.JToggleButton();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         lblProdutos = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -151,6 +159,39 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jPanel5.setForeground(new java.awt.Color(0, 0, 0));
+
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Horário de Entrada:");
+
+        jLabel2.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Horário de Saída:");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addContainerGap(49, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -162,7 +203,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addComponent(lblDescricaoMesa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(tglStatusMesa)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -171,7 +213,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblDescricaoMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(tglStatusMesa)
                 .addContainerGap(194, Short.MAX_VALUE))
@@ -329,7 +373,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 774, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)
         );
 
         pack();
@@ -340,8 +384,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_HandlerStatusMesa
 
     private void btnAdicionaItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionaItem1ActionPerformed
-        Pedido pedido = new Pedido((Produto)lstProdutos.getSelectedValuesList(),(Integer)spnQtdeDeItens.getValue());
-            
+        int index = lstProdutos.getSelectedIndex();
+        Pedido pedido = new Pedido((Produto) lstProdutos.getModel().getElementAt(index),
+                (Integer)spnQtdeDeItens.getValue());
+        DefaultListModel<Pedido> pedidos;
+        pedidos = (DefaultListModel<Pedido>)lstDescricaoMesa.getModel();
+        pedidos.addElement(pedido);
         
     }//GEN-LAST:event_btnAdicionaItem1ActionPerformed
 
@@ -363,9 +411,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_mitemEditaProdutoActionPerformed
 
     private void mitemAdicionaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemAdicionaProdutoActionPerformed
-        TelaAddProduto tAddProduto;    
-        
-        
+        TelaAddProduto tAddProduto = new TelaAddProduto();    
+        tAddProduto.setVisible(true);       
         
         
     }//GEN-LAST:event_mitemAdicionaProdutoActionPerformed
@@ -407,6 +454,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionaItem1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -414,6 +463,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -442,11 +492,93 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private class TelaAddProduto extends JFrame{
+        
+        private JLabel lblNomeProduto;
+        private JLabel lblValorProduto;
+        private JTextField txtNomeProduto;
+        private JTextField txtValorProduto;
+        private JButton btnLimpar;
+        private JButton btnAdicionar;
 
         public TelaAddProduto() {
             super("Adicionar Produto");
-            setLayout(new FlowLayout());
-            setVisible(true);
+            //alinhamento à direita
+            setLayout(new FlowLayout(FlowLayout.TRAILING,5,15));
+            setVisible(false);
+            setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            setSize(315, 150); 
+            setResizable(false);
+            setLocationRelativeTo(null);
+            
+            
+            lblNomeProduto = new JLabel("Nome do Produto");
+            lblValorProduto = new JLabel("Valor(R$)");
+            txtNomeProduto = new JTextField(15);
+            txtValorProduto = new JTextField(15);
+            btnLimpar = new JButton("Limpar");
+            btnAdicionar = new JButton("Adicionar");
+            
+            add(lblNomeProduto);
+            add(txtNomeProduto);
+            add(lblValorProduto);
+            add(txtValorProduto);
+            add(btnLimpar);
+            add(btnAdicionar);
+            
+            BtnLimparHandler btnLimparHandler = new BtnLimparHandler();
+            btnLimpar.addActionListener(btnLimparHandler);
+            
+            BtnAdicionarHandler btnAdicionarHandler = new BtnAdicionarHandler();
+            btnAdicionar.addActionListener(btnAdicionarHandler);
+        }
+        
+        private class BtnLimparHandler implements ActionListener{
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                txtNomeProduto.setText("");
+                txtValorProduto.setText("");
+            }
+            
+        }
+        
+        private class BtnAdicionarHandler implements ActionListener{
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                if("".equals(txtNomeProduto.getText())){
+                    JOptionPane.showMessageDialog(null,
+                            "O nome do produto não pode estar vázio",
+                                "Erro",JOptionPane.ERROR_MESSAGE);               
+                }
+                else{                                       
+                    
+                    try {
+                        //verifica se valor da caixa de texto é um número
+                        double valor = Double.parseDouble(
+                                txtValorProduto.getText());
+                        //cria produto que será adicionado
+                        Produto p = new Produto(
+                            txtNomeProduto.getText(),
+                            valor);
+                        
+                        //adiciona a JList de produtos
+                        DefaultListModel<Produto> produtos;
+                        produtos = (DefaultListModel<Produto>)lstProdutos.getModel();
+                        produtos.addElement(p);
+
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(null,"Valor inválido!",
+                                "Erro",JOptionPane.ERROR_MESSAGE);
+                    }                  
+                    
+
+                    txtNomeProduto.setText("");
+                    txtValorProduto.setText("");
+                }
+            }
+            
         }
     }
 }

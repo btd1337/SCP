@@ -142,6 +142,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtHorarioEntrada = new javax.swing.JTextField();
         btnAbreMesa = new javax.swing.JToggleButton();
+        btnAbreMesa1 = new javax.swing.JToggleButton();
         jPanel4 = new javax.swing.JPanel();
         lblProdutos = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -234,9 +235,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jScrollPane2.setViewportView(lstDescricaoMesa);
 
         btnFechaComanda.setBackground(new java.awt.Color(192, 57, 42));
-        btnFechaComanda.setFont(new java.awt.Font("Ubuntu", 0, 20)); // NOI18N
+        btnFechaComanda.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N
         btnFechaComanda.setForeground(new java.awt.Color(255, 255, 255));
         btnFechaComanda.setText("Fechar Comanda");
+        btnFechaComanda.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         btnFechaComanda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HandlerStatusMesa(evt);
@@ -269,7 +271,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtHorarioEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -282,12 +284,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
 
         btnAbreMesa.setBackground(new java.awt.Color(192, 57, 42));
-        btnAbreMesa.setFont(new java.awt.Font("Ubuntu", 0, 20)); // NOI18N
+        btnAbreMesa.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N
         btnAbreMesa.setForeground(new java.awt.Color(255, 255, 255));
-        btnAbreMesa.setText("Abrir Mesa");
+        btnAbreMesa.setText("Cancelar Pedido");
+        btnAbreMesa.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         btnAbreMesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAbreMesaHandlerStatusMesa(evt);
+                HandlerBtnCancelaPedido(evt);
+            }
+        });
+
+        btnAbreMesa1.setBackground(new java.awt.Color(192, 57, 42));
+        btnAbreMesa1.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N
+        btnAbreMesa1.setForeground(new java.awt.Color(255, 255, 255));
+        btnAbreMesa1.setText("Abrir Mesa");
+        btnAbreMesa1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        btnAbreMesa1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HandlerBtnAbreMesa(evt);
             }
         });
 
@@ -298,13 +312,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblDescricaoMesa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
+                    .addComponent(lblDescricaoMesa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(btnAbreMesa)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnFechaComanda)))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane2)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(btnAbreMesa1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnAbreMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnFechaComanda, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(7, 7, 7)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -318,8 +338,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAbreMesa)
-                    .addComponent(btnFechaComanda))
+                    .addComponent(btnAbreMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFechaComanda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAbreMesa1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(188, Short.MAX_VALUE))
         );
 
@@ -336,16 +357,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jScrollPane3.setViewportView(lstProdutos);
 
         btnAdicionaItem1.setBackground(new java.awt.Color(192, 57, 42));
-        btnAdicionaItem1.setFont(new java.awt.Font("Ubuntu", 0, 20)); // NOI18N
+        btnAdicionaItem1.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N
         btnAdicionaItem1.setForeground(new java.awt.Color(255, 255, 255));
         btnAdicionaItem1.setText("Adicionar Item");
+        btnAdicionaItem1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         btnAdicionaItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdicionaItem1ActionPerformed(evt);
             }
         });
 
-        lblQtde.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        lblQtde.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N
         lblQtde.setForeground(new java.awt.Color(255, 255, 255));
         lblQtde.setText("Qtde");
 
@@ -358,33 +380,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane3))
-                        .addContainerGap())
+                    .addComponent(lblProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(lblQtde, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(spnQtdeDeItens, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
-                        .addComponent(btnAdicionaItem1)
-                        .addGap(15, 15, 15))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                        .addComponent(btnAdicionaItem1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(lblProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnAdicionaItem1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblQtde, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(spnQtdeDeItens, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblQtde)
+                    .addComponent(spnQtdeDeItens, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdicionaItem1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -397,7 +415,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -425,7 +443,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         mitemRemoveMesa.setText("Remover Mesa");
         mitemRemoveMesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mitemRemoveMesaActionPerformed(evt);
+                HandlerRemoveMesa(evt);
             }
         });
         menOpcoes.add(mitemRemoveMesa);
@@ -477,7 +495,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1401, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1438, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -532,11 +550,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_mitemAdicionaMesaActionPerformed
 
-    private void mitemRemoveMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemRemoveMesaActionPerformed
+    private void HandlerRemoveMesa(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HandlerRemoveMesa
         DefaultListModel<Mesa> listaMesas;
         listaMesas = (DefaultListModel<Mesa>) lstMesas.getModel();
         listaMesas.remove(listaMesas.getSize()-1);
-    }//GEN-LAST:event_mitemRemoveMesaActionPerformed
+    }//GEN-LAST:event_HandlerRemoveMesa
 
     private void mitemEditaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemEditaProdutoActionPerformed
         // TODO add your handling code here:
@@ -564,22 +582,46 @@ public class TelaPrincipal extends javax.swing.JFrame {
         lstDescricaoMesa.setModel(listaDeMesas.getElementAt(index).getDlmPedidos());
     }//GEN-LAST:event_lstMesasValueChanged
 
-    private void btnAbreMesaHandlerStatusMesa(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbreMesaHandlerStatusMesa
-        int index = lstMesas.getSelectedIndex();
+    private void HandlerBtnCancelaPedido(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HandlerBtnCancelaPedido
+        DefaultListModel<Pedido> listaDePedidos;
+        listaDePedidos = (DefaultListModel<Pedido>) lstDescricaoMesa.getModel();
         
-        DefaultListModel<Mesa> listaDeMesas;
-        listaDeMesas = (DefaultListModel<Mesa>)lstMesas.getModel();
+        //verifica se o pedido tem mais de 1 item
+        int qtdeDisponivel = listaDePedidos.getElementAt(
+                lstDescricaoMesa.getSelectedIndex()).getQtdeDoProduto();
         
-        listaDeMesas.getElementAt(index).abrirMesa();
-        txtHorarioEntrada.setText((String)listaDeMesas.getElementAt(index).getHorarioEntrada());
+        JOptionPane.showMessageDialog(null, qtdeDisponivel);
+        if(qtdeDisponivel > 1){   
+            int qtde;   //quantidade que será removida
+            qtde = Integer.parseInt(
+                    JOptionPane.showInputDialog("Quantidade a ser cancelada"));
+            
+            listaDePedidos.getElementAt(
+                    lstDescricaoMesa.getSelectedIndex()).cancelarItem(qtde);
+            lstDescricaoMesa.setModel(listaDePedidos);  //atualiza
+        }
+        else{        
+            listaDePedidos.remove(lstProdutos.getSelectedIndex());
+            lstDescricaoMesa.setModel(listaDePedidos);  //atualiza
+        }
         
-    }//GEN-LAST:event_btnAbreMesaHandlerStatusMesa
+    }//GEN-LAST:event_HandlerBtnCancelaPedido
 
     private void mitemRemoveProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemRemoveProdutoActionPerformed
         DefaultListModel<Produto> listaDeProdutos;
         listaDeProdutos = (DefaultListModel<Produto>) lstProdutos.getModel();
         listaDeProdutos.remove(lstProdutos.getSelectedIndex());
     }//GEN-LAST:event_mitemRemoveProdutoActionPerformed
+
+    private void HandlerBtnAbreMesa(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HandlerBtnAbreMesa
+         int index = lstMesas.getSelectedIndex();
+        
+        DefaultListModel<Mesa> listaDeMesas;
+        listaDeMesas = (DefaultListModel<Mesa>)lstMesas.getModel();
+        
+        listaDeMesas.getElementAt(index).abrirMesa();
+        txtHorarioEntrada.setText((String)listaDeMesas.getElementAt(index).getHorarioEntrada());
+    }//GEN-LAST:event_HandlerBtnAbreMesa
 
     /**
      * @param args the command line arguments
@@ -618,6 +660,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnAbreMesa;
+    private javax.swing.JToggleButton btnAbreMesa1;
     private javax.swing.JButton btnAdicionaItem1;
     private javax.swing.JToggleButton btnFechaComanda;
     private javax.swing.JLabel jLabel1;

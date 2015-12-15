@@ -40,6 +40,84 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pedidos = new ArrayList();
         produtos = new ArrayList();
         
+        //Inicializa 10 Mesas
+        for(int i=0; i<10; i++){
+            Mesa novaMesa = new Mesa();
+        
+        DefaultListModel<Mesa> mesas;
+        mesas = (DefaultListModel<Mesa>)lstMesas.getModel();        
+        mesas.addElement(novaMesa);
+        }
+        
+        //Inicializa Produtos
+        Produto p = new Produto("Pizza Americana",26.0);                      
+        //adiciona a JList de produtos
+        DefaultListModel<Produto> dlmProdutos;
+        dlmProdutos = (DefaultListModel<Produto>)lstProdutos.getModel();
+        dlmProdutos.addElement(p);
+        
+        Produto p1 = new Produto("Pizza de Atum",25.50);
+        dlmProdutos = (DefaultListModel<Produto>)lstProdutos.getModel();
+        dlmProdutos.addElement(p1);
+                
+        Produto p2 = new Produto("Pizza de Bacon",27.50);
+        dlmProdutos = (DefaultListModel<Produto>)lstProdutos.getModel();
+        dlmProdutos.addElement(p2);
+        
+        
+        Produto p3 = new Produto("Pizza de Calabresa",25.0);
+        dlmProdutos = (DefaultListModel<Produto>)lstProdutos.getModel();
+        dlmProdutos.addElement(p3);
+        
+        
+        Produto p4 = new Produto("Pizza de Catupiry",25.50);
+        dlmProdutos = (DefaultListModel<Produto>)lstProdutos.getModel();
+        dlmProdutos.addElement(p4);
+        
+        
+        Produto p5 = new Produto("Pizza de Frango",25.0);
+        dlmProdutos = (DefaultListModel<Produto>)lstProdutos.getModel();
+        dlmProdutos.addElement(p5);
+        
+        
+        Produto p6 = new Produto("Pizza de Lombo",26.0);
+        dlmProdutos = (DefaultListModel<Produto>)lstProdutos.getModel();
+        dlmProdutos.addElement(p6);
+        
+        
+        Produto p7 = new Produto("Pizza de Mussarela",25.50);
+        dlmProdutos = (DefaultListModel<Produto>)lstProdutos.getModel();
+        dlmProdutos.addElement(p7);
+        
+        
+        Produto p8 = new Produto("Pizza Paulista",27.0);
+        dlmProdutos = (DefaultListModel<Produto>)lstProdutos.getModel();
+        dlmProdutos.addElement(p8);
+        
+        
+        Produto p9 = new Produto("Pizza Portuguesa",25.0);
+        dlmProdutos = (DefaultListModel<Produto>)lstProdutos.getModel();
+        dlmProdutos.addElement(p9);
+        
+        
+        Produto p10 = new Produto("Coca Cola 2L",5.50);
+        dlmProdutos = (DefaultListModel<Produto>)lstProdutos.getModel();
+        dlmProdutos.addElement(p10);
+        
+        
+        Produto p11 = new Produto("Coca Cola 500mL",3.0);
+        dlmProdutos = (DefaultListModel<Produto>)lstProdutos.getModel();
+        dlmProdutos.addElement(p11);
+        
+        
+        Produto p12 = new Produto("Agua Mineral 300mL",2.0);
+        dlmProdutos = (DefaultListModel<Produto>)lstProdutos.getModel();
+        dlmProdutos.addElement(p12);
+        
+        
+        Produto p13 = new Produto("Brahma",4.0);
+        dlmProdutos = (DefaultListModel<Produto>)lstProdutos.getModel();
+        dlmProdutos.addElement(p13);
     }
     
     @SuppressWarnings("unchecked")
@@ -59,12 +137,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         lblDescricaoMesa = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         lstDescricaoMesa = new javax.swing.JList();
-        tglStatusMesa = new javax.swing.JToggleButton();
+        btnFechaComanda = new javax.swing.JToggleButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         txtHorarioEntrada = new javax.swing.JTextField();
-        txtHorarioSaida = new javax.swing.JTextField();
+        btnAbreMesa = new javax.swing.JToggleButton();
         jPanel4 = new javax.swing.JPanel();
         lblProdutos = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -156,10 +233,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         lstDescricaoMesa.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(lstDescricaoMesa);
 
-        tglStatusMesa.setBackground(new java.awt.Color(192, 57, 42));
-        tglStatusMesa.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
-        tglStatusMesa.setText("Abrir Mesa");
-        tglStatusMesa.addActionListener(new java.awt.event.ActionListener() {
+        btnFechaComanda.setBackground(new java.awt.Color(192, 57, 42));
+        btnFechaComanda.setFont(new java.awt.Font("Ubuntu", 0, 20)); // NOI18N
+        btnFechaComanda.setForeground(new java.awt.Color(255, 255, 255));
+        btnFechaComanda.setText("Fechar Comanda");
+        btnFechaComanda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HandlerStatusMesa(evt);
             }
@@ -173,10 +251,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Horário de Entrada:");
 
-        jLabel2.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Horário de Saída:");
-
         txtHorarioEntrada.setBackground(new java.awt.Color(255, 255, 255));
         txtHorarioEntrada.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         txtHorarioEntrada.setForeground(new java.awt.Color(0, 0, 0));
@@ -186,45 +260,36 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        txtHorarioSaida.setBackground(new java.awt.Color(255, 255, 255));
-        txtHorarioSaida.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
-        txtHorarioSaida.setForeground(new java.awt.Color(0, 0, 0));
-        txtHorarioSaida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtHorarioSaidaActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtHorarioEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtHorarioSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(txtHorarioEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(txtHorarioEntrada)
-                        .addGap(2, 2, 2))
+                    .addComponent(txtHorarioEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtHorarioSaida))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        btnAbreMesa.setBackground(new java.awt.Color(192, 57, 42));
+        btnAbreMesa.setFont(new java.awt.Font("Ubuntu", 0, 20)); // NOI18N
+        btnAbreMesa.setForeground(new java.awt.Color(255, 255, 255));
+        btnAbreMesa.setText("Abrir Mesa");
+        btnAbreMesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbreMesaHandlerStatusMesa(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -234,11 +299,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblDescricaoMesa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(tglStatusMesa)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblDescricaoMesa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(btnAbreMesa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnFechaComanda)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -249,10 +315,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(tglStatusMesa)
-                .addContainerGap(194, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAbreMesa)
+                    .addComponent(btnFechaComanda))
+                .addContainerGap(188, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(136, 0, 6));
@@ -268,7 +336,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jScrollPane3.setViewportView(lstProdutos);
 
         btnAdicionaItem1.setBackground(new java.awt.Color(192, 57, 42));
-        btnAdicionaItem1.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        btnAdicionaItem1.setFont(new java.awt.Font("Ubuntu", 0, 20)); // NOI18N
         btnAdicionaItem1.setForeground(new java.awt.Color(255, 255, 255));
         btnAdicionaItem1.setText("Adicionar Item");
         btnAdicionaItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -329,7 +397,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -372,6 +440,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menOpcoes.add(mitemAdicionaProduto);
 
         mitemRemoveProduto.setText("Remover Produto");
+        mitemRemoveProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mitemRemoveProdutoActionPerformed(evt);
+            }
+        });
         menOpcoes.add(mitemRemoveProduto);
 
         jMenuBar1.add(menOpcoes);
@@ -415,26 +488,36 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void HandlerStatusMesa(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HandlerStatusMesa
-        DefaultListModel<Mesa> mesaAtual;
-        mesaAtual = (DefaultListModel<Mesa>)lstMesas.getModel();
+        DefaultListModel<Mesa> listaDeMesas;
+        listaDeMesas = (DefaultListModel<Mesa>)lstMesas.getModel();
         
-        mesaAtual.getElementAt(lstMesas.getSelectedIndex()).abrirMesa();
-        txtHorarioEntrada.setText(mesaAtual.getElementAt(lstMesas.getSelectedIndex()).getHorarioEntrada());
+        //mesaAtual.getElementAt(lstMesas.getSelectedIndex()).abrirMesa();
+        
+        
+        
+        JOptionPane.showMessageDialog(null,
+                listaDeMesas.getElementAt(lstMesas.getSelectedIndex()).fecharMesa(),
+                "Comanda", JOptionPane.INFORMATION_MESSAGE);
+        
     }//GEN-LAST:event_HandlerStatusMesa
 
     private void btnAdicionaItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionaItem1ActionPerformed
         int index = lstProdutos.getSelectedIndex();
         Pedido pedido = new Pedido((Produto) lstProdutos.getModel().getElementAt(index),
-                (Integer)spnQtdeDeItens.getValue());
-        
-        
-        
+                (Integer)spnQtdeDeItens.getValue());    
         
         //adiciona ao array list da mesa
-        Mesa mesaAtual = new Mesa();
+        Mesa mesaAtual = new Mesa(1);   //Não acrescentar nova mesa
         mesaAtual = (Mesa) lstMesas.getSelectedValue();
+        
+        //Verifica se a Mesa Atual ainda não foi aberta
+        if(!mesaAtual.isOcupacaoMesa()){
+            mesaAtual.abrirMesa();
+        }        
+        
         mesaAtual.acrescentarPedido(pedido);        
         
+        //Atualiza o DefaultListModel da Mesa Atual
         lstDescricaoMesa.setModel(mesaAtual.getDlmPedidos());      
         
     }//GEN-LAST:event_btnAdicionaItem1ActionPerformed
@@ -450,7 +533,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_mitemAdicionaMesaActionPerformed
 
     private void mitemRemoveMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemRemoveMesaActionPerformed
-        // TODO add your handling code here:
+        DefaultListModel<Mesa> listaMesas;
+        listaMesas = (DefaultListModel<Mesa>) lstMesas.getModel();
+        listaMesas.remove(listaMesas.getSize()-1);
     }//GEN-LAST:event_mitemRemoveMesaActionPerformed
 
     private void mitemEditaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemEditaProdutoActionPerformed
@@ -468,21 +553,33 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtHorarioEntradaActionPerformed
 
-    private void txtHorarioSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHorarioSaidaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtHorarioSaidaActionPerformed
-
     private void lstMesasValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstMesasValueChanged
         int index = lstMesas.getSelectedIndex();
         
-        DefaultListModel<Mesa> mesaAtual;
-        mesaAtual = (DefaultListModel<Mesa>)lstMesas.getModel();
+        DefaultListModel<Mesa> listaDeMesas;
+        listaDeMesas = (DefaultListModel<Mesa>)lstMesas.getModel();
         
         
-        txtHorarioEntrada.setText((String)mesaAtual.getElementAt(index).getHorarioEntrada());
-        txtHorarioSaida.setText("");
-        lstDescricaoMesa.setModel(mesaAtual.getElementAt(index).getDlmPedidos());
+        txtHorarioEntrada.setText((String)listaDeMesas.getElementAt(index).getHorarioEntrada());
+        lstDescricaoMesa.setModel(listaDeMesas.getElementAt(index).getDlmPedidos());
     }//GEN-LAST:event_lstMesasValueChanged
+
+    private void btnAbreMesaHandlerStatusMesa(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbreMesaHandlerStatusMesa
+        int index = lstMesas.getSelectedIndex();
+        
+        DefaultListModel<Mesa> listaDeMesas;
+        listaDeMesas = (DefaultListModel<Mesa>)lstMesas.getModel();
+        
+        listaDeMesas.getElementAt(index).abrirMesa();
+        txtHorarioEntrada.setText((String)listaDeMesas.getElementAt(index).getHorarioEntrada());
+        
+    }//GEN-LAST:event_btnAbreMesaHandlerStatusMesa
+
+    private void mitemRemoveProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemRemoveProdutoActionPerformed
+        DefaultListModel<Produto> listaDeProdutos;
+        listaDeProdutos = (DefaultListModel<Produto>) lstProdutos.getModel();
+        listaDeProdutos.remove(lstProdutos.getSelectedIndex());
+    }//GEN-LAST:event_mitemRemoveProdutoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -520,9 +617,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton btnAbreMesa;
     private javax.swing.JButton btnAdicionaItem1;
+    private javax.swing.JToggleButton btnFechaComanda;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -555,9 +653,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mitemRemoveProduto;
     private javax.swing.JMenuItem mitemSobre;
     private javax.swing.JSpinner spnQtdeDeItens;
-    private javax.swing.JToggleButton tglStatusMesa;
     private javax.swing.JTextField txtHorarioEntrada;
-    private javax.swing.JTextField txtHorarioSaida;
     // End of variables declaration//GEN-END:variables
 
     private class TelaAddProduto extends JFrame{

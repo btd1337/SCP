@@ -8,6 +8,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -40,10 +41,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         produtos = new ArrayList();
         
     }
-
-    public void addProduto(Produto p){
-        produtos.add(p);
-    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -66,6 +63,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        txtHorarioEntrada = new javax.swing.JTextField();
+        txtHorarioSaida = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         lblProdutos = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -110,6 +109,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         lstMesas.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         lstMesas.setForeground(new java.awt.Color(51, 51, 51));
         lstMesas.setModel(new DefaultListModel<Mesa>());
+        lstMesas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        lstMesas.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstMesasValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(lstMesas);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -148,11 +153,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         lstDescricaoMesa.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         lstDescricaoMesa.setModel(new DefaultListModel<Pedido>());
+        lstDescricaoMesa.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(lstDescricaoMesa);
 
         tglStatusMesa.setBackground(new java.awt.Color(192, 57, 42));
         tglStatusMesa.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
-        tglStatusMesa.setText("Status Da Mesa");
+        tglStatusMesa.setText("Abrir Mesa");
         tglStatusMesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HandlerStatusMesa(evt);
@@ -171,6 +177,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Horário de Saída:");
 
+        txtHorarioEntrada.setBackground(new java.awt.Color(255, 255, 255));
+        txtHorarioEntrada.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        txtHorarioEntrada.setForeground(new java.awt.Color(0, 0, 0));
+        txtHorarioEntrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtHorarioEntradaActionPerformed(evt);
+            }
+        });
+
+        txtHorarioSaida.setBackground(new java.awt.Color(255, 255, 255));
+        txtHorarioSaida.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        txtHorarioSaida.setForeground(new java.awt.Color(0, 0, 0));
+        txtHorarioSaida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtHorarioSaidaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -180,16 +204,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtHorarioEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtHorarioSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(txtHorarioEntrada)
+                        .addGap(2, 2, 2))
+                    .addComponent(jLabel1))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtHorarioSaida))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -214,8 +248,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(lblDescricaoMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(tglStatusMesa)
                 .addContainerGap(194, Short.MAX_VALUE))
@@ -230,6 +264,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         lstProdutos.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         lstProdutos.setModel(new DefaultListModel<Produto>());
+        lstProdutos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane3.setViewportView(lstProdutos);
 
         btnAdicionaItem1.setBackground(new java.awt.Color(192, 57, 42));
@@ -373,23 +408,34 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void HandlerStatusMesa(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HandlerStatusMesa
-        //Implementar
+        DefaultListModel<Mesa> mesaAtual;
+        mesaAtual = (DefaultListModel<Mesa>)lstMesas.getModel();
+        
+        mesaAtual.getElementAt(lstMesas.getSelectedIndex()).abrirMesa();
+        txtHorarioEntrada.setText(mesaAtual.getElementAt(lstMesas.getSelectedIndex()).getHorarioEntrada());
     }//GEN-LAST:event_HandlerStatusMesa
 
     private void btnAdicionaItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionaItem1ActionPerformed
         int index = lstProdutos.getSelectedIndex();
         Pedido pedido = new Pedido((Produto) lstProdutos.getModel().getElementAt(index),
                 (Integer)spnQtdeDeItens.getValue());
-        DefaultListModel<Pedido> pedidos;
-        pedidos = (DefaultListModel<Pedido>)lstDescricaoMesa.getModel();
-        pedidos.addElement(pedido);
+        
+        
+        
+        
+        //adiciona ao array list da mesa
+        Mesa mesaAtual = new Mesa();
+        mesaAtual = (Mesa) lstMesas.getSelectedValue();
+        mesaAtual.acrescentarPedido(pedido);        
+        
+        lstDescricaoMesa.setModel(mesaAtual.getDlmPedidos());      
         
     }//GEN-LAST:event_btnAdicionaItem1ActionPerformed
 
@@ -398,6 +444,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         DefaultListModel<Mesa> mesas;
         mesas = (DefaultListModel<Mesa>)lstMesas.getModel();
+        
         mesas.addElement(novaMesa);        
         
     }//GEN-LAST:event_mitemAdicionaMesaActionPerformed
@@ -416,6 +463,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_mitemAdicionaProdutoActionPerformed
+
+    private void txtHorarioEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHorarioEntradaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtHorarioEntradaActionPerformed
+
+    private void txtHorarioSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHorarioSaidaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtHorarioSaidaActionPerformed
+
+    private void lstMesasValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstMesasValueChanged
+        int index = lstMesas.getSelectedIndex();
+        
+        DefaultListModel<Mesa> mesaAtual;
+        mesaAtual = (DefaultListModel<Mesa>)lstMesas.getModel();
+        
+        
+        txtHorarioEntrada.setText((String)mesaAtual.getElementAt(index).getHorarioEntrada());
+        txtHorarioSaida.setText("");
+        lstDescricaoMesa.setModel(mesaAtual.getElementAt(index).getDlmPedidos());
+    }//GEN-LAST:event_lstMesasValueChanged
 
     /**
      * @param args the command line arguments
@@ -489,6 +556,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mitemSobre;
     private javax.swing.JSpinner spnQtdeDeItens;
     private javax.swing.JToggleButton tglStatusMesa;
+    private javax.swing.JTextField txtHorarioEntrada;
+    private javax.swing.JTextField txtHorarioSaida;
     // End of variables declaration//GEN-END:variables
 
     private class TelaAddProduto extends JFrame{
@@ -561,7 +630,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         //cria produto que será adicionado
                         Produto p = new Produto(
                             txtNomeProduto.getText(),
-                            valor);
+                            valor);                        
                         
                         //adiciona a JList de produtos
                         DefaultListModel<Produto> produtos;
